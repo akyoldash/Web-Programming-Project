@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Sign Up</h1>
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" aria-describedby="name-help" required>
+                <small id="name-help" class="form-text text-muted">Please enter your full name.</small>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="email-help" required>
+                <small id="email-help" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm-password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+<script>
+$(document).ready(function () {
+    $('#signup-form').submit(function (e) {
+        e.preventDefault();
+
+        // Validate form
+        var isValid = true;
+        if ($('#password').val() !== $('#confirm-password').val()) {
+            isValid = false;
+            $('#confirm-password').addClass('is-invalid');
+            $('.error').text('Passwords do not match');
+        } else {
+            $('#confirm-password').removeClass('is-invalid');
+            $('.error').text('');
+        }
+
+        if (!isValid) {
+            return;
+        }
+
+        // Create new user object
+        var user = {
+            name: $('#name').val(),
+            email: $('#email').val(),
+            password: $('#password').val()
+        };
+
+        // Add user to database
+        $.post('/signup', user, function (data) {
+            if (data.success) {
+                window.location.href = '/login';
+            } else {
+                $('.error').text(data.error);
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>

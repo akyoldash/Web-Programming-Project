@@ -16,12 +16,20 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\ahmet\OneDrive\Desktop\Web-Programming-Project\Web-Programming-Project
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/ahmet/OneDrive/Desktop/Web-Programming-Project/Web-Programming-Project/Views/Home/AdminPanel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZG1pblBhbmVsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ahmet/OneDrive/Desktop/Web-Programming-Project/Web-Programming-Project/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ahmet/OneDrive/Desktop/Web-Programming-Project/Web-Programming-Project/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[C:/Users/ahmet/OneDrive/Desktop/Web-Programming-Project/Web-Programming-Project/Views/Home/SignIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduSW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ahmet/OneDrive/Desktop/Web-Programming-Project/Web-Programming-Project/Views/Home/SignUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaWduVXAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ahmet/OneDrive/Desktop/Web-Programming-Project/Web-Programming-Project/Views/Shared/Error.cshtml]
