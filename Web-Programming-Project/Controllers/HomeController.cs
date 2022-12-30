@@ -13,6 +13,7 @@ namespace Web_Programming_Project.Controllers
             _logger = logger;
         }
 
+        //Homepage
         public IActionResult HomePage()
         {
             return View();
