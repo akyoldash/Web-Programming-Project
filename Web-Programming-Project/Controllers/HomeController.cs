@@ -31,10 +31,44 @@ namespace Web_Programming_Project.Controllers
         [HttpPost]
         public IActionResult NewMovie(Movie movie)
         {
-            obj.SaveChanges
-            movie.Movies
-            movie.SaveChanges();
-            return View();
+            obj.Movies.Add(movie);
+            obj.SaveChanges();
+            return RedirectToAction("Index");   
+            
+        }
+
+        public IActionResult MovieDelete(int id)
+        {
+            var movie = obj.Movies.Find(id);
+            obj.Movies.Remove(movie);
+            obj.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult MovieGet(int id)
+        {
+            var movie = obj.Movies.Find(id);
+            return View("MovieGet", movie);
+        }
+
+        
+        public IActionResult MovieUpdate(Movie movie)
+        {
+            
+            var updatedMovie = obj.Movies.Find(movie.Id);
+            updatedMovie.Name = movie.Name;
+            updatedMovie.Director = movie.Director;
+            updatedMovie.Composer = movie.Composer;
+            updatedMovie.Language = movie.Language;
+            updatedMovie.Rating = movie.Rating;
+            updatedMovie.Writer = movie.Writer;
+            updatedMovie.Star_Actor = movie.Star_Actor;
+            updatedMovie.Genre = movie.Genre;
+            updatedMovie.Synposis = movie.Synposis;
+
+
+            obj.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public IActionResult SignIn()

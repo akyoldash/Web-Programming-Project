@@ -11,7 +11,7 @@ namespace Web_Programming_Project.Models
 
             
         }
-
+      
 
         public DbSet<Movie> Movies { get; set; }
 

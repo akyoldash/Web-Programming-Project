@@ -11,6 +11,6 @@ namespace Web_Programming_Project.Models
 
         public string Password { get; set; }
 
-        public string Email { get; set; }   
+        public ICollection<Movie> Movies { get; set; }
     }
 }

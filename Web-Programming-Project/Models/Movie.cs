@@ -25,6 +25,9 @@ namespace Web_Programming_Project.Models
 
         public string Synposis { get; set; }
 
+        public string Comment { get; set; }
+
+        public ICollection<User> Users { get; set; }    
 
     }
 }
