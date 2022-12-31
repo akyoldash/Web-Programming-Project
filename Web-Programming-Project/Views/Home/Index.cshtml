@@ -1,0 +1,75 @@
+﻿@using Web_Programming_Project.Models
+@model List<Movie>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Catalog</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container mt-5">
+        <h1>Welcome to the Movie Catalog</h1>
+        <p>Discover new movies, rate and review your favorites, and share your thoughts with other movie enthusiasts.</p>
+    </div>
+        
+                    
+
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Director</th>
+        <th>Composer</th>
+        <th>Language</th>
+        <th>Rating</th>
+        <th>Writer</th>
+        <th>Star Actor</th>
+        <th>Genre</th>
+        <th>Synopsis</th>
+        <th>Delete</th>
+        <th>Update</th>
+        <th>Comment</th>
+    </tr>
+    
+    @foreach(var i in Model)
+    {
+    <tr>
+        <td>@i.Name</td>
+        <td>@i.Director</td>
+        <td>@i.Composer</td>
+        <td>@i.Language</td>
+        <td>@i.Rating</td>
+        <td>@i.Writer</td>
+        <td>@i.Star_Actor</td>
+        <td>@i.Genre</td>
+        <td>@i.Synposis</td>
+        <td><a href="#" class="btn btn-danger">Delete</a></td>
+        <td><a href="#" class="btn btn-success">Update</a></td>
+        <td><a href="#" class="btn btn-default" style="background-color:cornflowerblue">Comment</a></td>
+    </tr>
+    }
+</table>
+    <a href="/Home/NewMovie" class="btn btn-primary">New Movie</a>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+

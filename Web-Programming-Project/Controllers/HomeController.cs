@@ -8,14 +8,32 @@ namespace Web_Programming_Project.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        Context obj = new Context();
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
 
         //Homepage
-        public IActionResult HomePage()
+        public IActionResult Index()
         {
+            var values = obj.Movies.ToList();
+            return View(values);
+        }
+
+        [HttpGet]
+        public IActionResult NewMovie() 
+        {
+            return View();       
+        }
+
+        [HttpPost]
+        public IActionResult NewMovie(Movie movie)
+        {
+            obj.SaveChanges
+            movie.Movies
+            movie.SaveChanges();
             return View();
         }
 
