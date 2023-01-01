@@ -5,24 +5,28 @@
     ViewData["Title"] = "Admin Panel";
 }
 
+@using Web_Programming_Project.Resources.Languages
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Lang> language
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Panel</title>
+    <title>@language["Admin Panel"]</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
    
     <div class="container mt-5">
-        <h1>Users</h1>
+        <h1>@language["Users"]</h1>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Password</th>
+                    <th scope="col">@language["UserName"]</th>
+                    <th scope="col">@language["Password"]</th>
                     
-                    <th scope="col">Actions</th>
+                    <th scope="col">@language["Actions"]</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +36,7 @@
                     <td>@i.UserId</td>
                     <td>@i.UserName</td>
                     <td>@i.Password</td>                                       
-                    <td><a href="/User/UserDelete/@i.UserId" class="btn btn-danger">Delete</a></td>
+                    <td><a href="/User/UserDelete/@i.UserId" class="btn btn-danger">@language["Delete"]</a></td>
                            
                 </tr>
                 }

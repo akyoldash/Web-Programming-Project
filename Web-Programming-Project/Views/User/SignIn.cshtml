@@ -1,30 +1,56 @@
-﻿@model Web_Programming_Project.Models.User
+﻿<!--model Web_Programming_Project.Models.User-->
+@using Web_Programming_Project.Resources.Languages
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Lang> language
 
 @{
     ViewData["Title"] = "Login Page";
 }
 <!-- SignIn.cshtml -->
 
-<form id="signin-form" method="post">
-    <div>
-        <label for="user-name">User Name:</label>
-        <input type="text" id="user-name" name="userName">
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
-    </div>
-    <div>
-        <button type="submit">Sign In</button>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@language["Sign Up"]</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <form id="signin-form" method="post">
+            <div class="form-group">
+                <label for="user-name">@language["UserName"]:</label>
+                <input type="text" id="user-name" name="userName">
+            </div>
+            <div class="form-group">
+                <label for="password">@language["Password"]:</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <!----<input type="checkbox" id="is-admin" name="is-admin">
+                <label for="is-admin">Sign in as admin</label>-->
+                <button type="submit">@language["Sign In"]</button>
+            </div>
+
+
+            @if (ViewData["ValidateMessage"] != null)
+            {
+                <br />
+                <br />
+                <label background-color="#f44336">@ViewData["ValidateMessage"]</label>
+            }
+        </form>
     </div>
 
-    @if (ViewData["ValidateMessage"] != null)
-    {
-        <br />
-        <br />
-        <label background-color="#f44336">@ViewData["ValidateMessage"]</label>
-    }
-</form>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
 
 <script>
     $(document).ready(function () {
@@ -35,22 +61,20 @@
             var userName = $('#user-name').val();
             var password = $('#password').val();
 
-            // If the user name and password are "admin", redirect the user to the admin panel
-            if (userName === "b201210097@sakarya.edu.tr" && password === "sau") {
-                window.location.href = '/User/AdminPanel';
-                return;
-            }
+            //var isAdmin = $('#is-admin').is(':checked');
 
-            // Send a request to the server to sign the user in
-            $.post('/User/SignIn', { userName: userName, password: password }, function (data) {
+            
+                $.post('/User/SignIn', { userName: userName, password: password }, function (data) {
                 if (data.success) {
                     // If the sign-in was successful, redirect the user to the home page
                     window.location.href = '/Home/Index';
                 } else {
                     // If the sign-in was not successful, display an error message
                     alert(data.error);
-                }
-            });
+                });
+            };
         });
     });
 </script>
+</body>
+</html>

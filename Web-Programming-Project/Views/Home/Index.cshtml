@@ -1,14 +1,19 @@
 ﻿@using Web_Programming_Project.Models
+
 @model List<Movie>
+<Movie>
 
 @{
     ViewData["Title"] = "Home Page";
 }
+@using Web_Programming_Project.Resources.Languages
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Lang> language
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Movie Catalog</title>
+    <title>@language["Movie Catalog"]</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
         .card-img-top {
@@ -20,30 +25,33 @@
 <body>
     
     <div class="container mt-5">
-        <h1>Welcome to the Movie Catalog</h1>
-        <p>Discover new movies, rate and review your favorites, and share your thoughts with other movie enthusiasts.</p>
+        <h1>@language["Welcome to the Movie Catalog"]</h1>
+            <p>@language["Discover new movies, rate and review your favorites, and share your thoughts with other movie enthusiasts."]</p>
     </div>
-        
-                    
 
+
+        <a href="/Home/AlphabeticalOrder" class="btn btn-primary">@language["Sort By Alphabetical Order"]</a>
 
 
 <table class="table table-bordered">
     <tr>
-        <th>Name</th>
-        <th>Director</th>
-        <th>Composer</th>
-        <th>Language</th>
-        <th>Rating</th>
-        <th>Writer</th>
-        <th>Star Actor</th>
-        <th>Genre</th>
-        <th>Synopsis</th>
-        <th>Delete</th>
-        <th>Update</th>
-        <th>Comment</th>
+        <th>@language["Name"]</th>
+        <th>@language["Director"]></th>
+        <th>@language["Composer"]</th>
+        <th>@language["Language"]</th>
+        <th>@language["Rating"]</th>
+        <th>@language["Writer"]</th>
+        <th>@language["Star Actor"]</th>
+        <th>@language["Genre"]</th>
+        <th>@language["Synopsis"]</th>
+        <th>@language["Comment"]</th>
+        <th>@language["Delete"]</th>
+        <th>@language["Update"]</th>
+        
     </tr>
     
+
+
     @foreach(var i in Model)
     {
     <tr>
@@ -57,14 +65,15 @@
         <td>@i.Genre</td>
         <td>@i.Synposis</td> 
         <td>@i.Comment</td>
-        <td><a href="#" class="btn btn-default" style="background-color:cornflowerblue">Comment</a></td>
-        <td><a href="/Home/MovieDelete/@i.Id" class="btn btn-danger">Delete</a></td>
-        <td><a href="/Home/MovieGet/@i.Id" class="btn btn-success">Update</a></td>
+
+                    <td><a href="/Home/MovieDelete/@i.Id" class="btn btn-danger">@language["Delete"]</a></td>
+                    <td><a href="/Home/MovieGet/@i.Id" class="btn btn-success">@language["Update"]</a></td>
         
     </tr>
     }
 </table>
-    <a href="/Home/NewMovie" class="btn btn-primary">New Movie</a>
+<a href="/Home/NewMovie" class="btn btn-primary">@language["New Movie"]</a>
+    
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

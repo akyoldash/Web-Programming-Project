@@ -1,9 +1,13 @@
 ﻿@model Web_Programming_Project.Models.User
 
+@using Web_Programming_Project.Resources.Languages
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Lang> language
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign Up</title>
+    <title>@language["Sign Up"]</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         .error {
@@ -13,22 +17,22 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Sign Up</h1>
+        <h1>@language["Sign Up"]</h1>
         <form id="signup-form">
             <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name">@language["Name"]</label>
                 <input type="text" class="form-control" id="name" aria-describedby="name-help" required>
                 <small id="name-help" class="form-text text-muted">Please enter your full name.</small>
             </div>            
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">@language["Password"]</label>
                 <input type="password" class="form-control" id="password" required>
             </div>
             <div class="form-group">
-                <label for="confirm-password">Confirm Password</label>
+                <label for="confirm-password">@language["Confirm Password"]</label>
                 <input type="password" class="form-control" id="confirm-password" required>
             </div>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <button type="submit" class="btn btn-primary">@language["Sign Up"]</button>
         </form>
     </div>
 

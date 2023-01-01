@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using System.Security.Claims;
 using Web_Programming_Project.Models;
+using Web_Programming_Project.Resources.Languages;
 
 namespace Web_Programming_Project.Controllers
 {
@@ -13,7 +15,7 @@ namespace Web_Programming_Project.Controllers
         Context obj = new Context();
 
         
-        
+
         [HttpGet]
         public IActionResult SignIn()
         {
@@ -28,9 +30,10 @@ namespace Web_Programming_Project.Controllers
         [HttpPost]
         public async Task<IActionResult> SignIn(User user)
         {
-            
+           
             var info = obj.Users.FirstOrDefault(x => x.UserName == user.UserName &&
             x.Password == user.Password);
+            
             if (info != null)
             {
                

@@ -4,6 +4,9 @@ using System.Diagnostics;
 using Web_Programming_Project.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Localization;
+using Web_Programming_Project.Resources.Languages;
 
 namespace Web_Programming_Project.Controllers
 {
@@ -11,11 +14,14 @@ namespace Web_Programming_Project.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        private readonly IStringLocalizer<Lang> _langLocalizer;
+
         Context obj = new Context();
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IStringLocalizer<Lang> langLocalizer)
         {
             _logger = logger;
+            _langLocalizer = langLocalizer;
         }
 
         
@@ -72,13 +78,26 @@ namespace Web_Programming_Project.Controllers
             updatedMovie.Star_Actor = movie.Star_Actor;
             updatedMovie.Genre = movie.Genre;
             updatedMovie.Synposis = movie.Synposis;
+            updatedMovie.Comment= movie.Comment;
 
 
             obj.SaveChanges();
             return RedirectToAction("Index");
         }
 
-       public async Task<IActionResult> LogOut()
+        public IActionResult AlphabeticalOrder()
+        { return View(); }
+
+        public IActionResult ChangeLanguage(string culture)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions() { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+
+            return Redirect(Request.Headers["Referer"].ToString());
+        }
+
+        public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("SignIn", "User");

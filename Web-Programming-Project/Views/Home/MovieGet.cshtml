@@ -5,9 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>MovieGet</h1>
+@using Web_Programming_Project.Resources.Languages
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Lang> language
 
-<h4>Movie</h4>
+
+<h4>@language["Movie"]</h4>
 <hr />
  
 <div class="row">
@@ -25,52 +28,57 @@
                 </div>
 
                 <div class="form-group">
-                    <label asp-for="Name" class="control-label"></label>
+                    <label asp-for="Name" class="control-label">@language["Name"]</label>
                     <input asp-for="Name" class="form-control" />
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Director" class="control-label"></label>
+                    <label asp-for="Director" class="control-label">@language["Director"]</label>
                     <input asp-for="Director" class="form-control" />
                     <span asp-validation-for="Director" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Composer" class="control-label"></label>
+                    <label asp-for="Composer" class="control-label">@language["Composer"]</label>
                     <input asp-for="Composer" class="form-control" />
                     <span asp-validation-for="Composer" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Language" class="control-label"></label>
+                    <label asp-for="Language" class="control-label">@language["Language"]</label>
                     <input asp-for="Language" class="form-control" />
                     <span asp-validation-for="Language" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Rating" class="control-label"></label>
+                    <label asp-for="Rating" class="control-label">@language["Rating"]</label>
                     <input asp-for="Rating" class="form-control" />
                     <span asp-validation-for="Rating" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Writer" class="control-label"></label>
+                    <label asp-for="Writer" class="control-label">@language["Writer"]</label>
                     <input asp-for="Writer" class="form-control" />
                     <span asp-validation-for="Writer" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Star_Actor" class="control-label"></label>
+                    <label asp-for="Star_Actor" class="control-label">@language["Star Actor"]</label>
                     <input asp-for="Star_Actor" class="form-control" />
                     <span asp-validation-for="Star_Actor" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Genre" class="control-label"></label>
+                    <label asp-for="Genre" class="control-label">@language["Genre"]</label>
                     <input asp-for="Genre" class="form-control" />
                     <span asp-validation-for="Genre" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Synposis" class="control-label"></label>
+                    <label asp-for="Synposis" class="control-label">@language["Synposis"]</label>
                     <input asp-for="Synposis" class="form-control" />
                     <span asp-validation-for="Synposis" class="text-danger"></span>
                 </div>
+                    <div class="form-group">
+                    <label asp-for="Comment" class="control-label">@language["Comment"]</label>
+                    <input asp-for="Comment" class="form-control" />
+                    <span asp-validation-for="Comment" class="text-danger"></span>
+                    </div>
                 <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <input type="submit" value="@language["Save"]" class="btn btn-primary" />
                 </div>
             }
         </form>
@@ -79,6 +87,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">@language["Back to List"]</a>
 </div>
 

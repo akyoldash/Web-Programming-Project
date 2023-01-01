@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\ahmet\OneDrive\Desktop\Web-Programming-Project\Web-Programming-Project
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/ahmet/OneDrive/Desktop/Web-Programming-Project/Web-Programming-Project/Views/Home/AlphabeticalOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBbHBoYWJldGljYWxPcmRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/ahmet/OneDrive/Desktop/Web-Programming-Project/Web-Programming-Project/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

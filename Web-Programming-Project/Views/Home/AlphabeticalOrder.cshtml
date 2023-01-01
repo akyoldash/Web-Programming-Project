@@ -1,0 +1,80 @@
+﻿@using Microsoft.EntityFrameworkCore;
+
+@using Web_Programming_Project.Resources.Languages
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Lang> language
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@language["Movie Catalog"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1>@language["Welcome to the Movie Catalog"]</h1>
+        <p>@language["Discover new movies, rate and review your favorites, and share your thoughts with other movie enthusiasts."]</p>
+    </div>
+
+<table class="table table-bordered">
+    <tr>
+        <th>@language["Name"]</th>
+        <th>@language["Director"]></th>
+        <th>@language["Composer"]</th>
+        <th>@language["Language"]</th>
+        <th>@language["Rating"]</th>
+        <th>@language["Writer"]</th>
+        <th>@language["Star Actor"]</th>
+        <th>@language["Genre"]</th>
+        <th>@language["Synopsis"]</th>
+        <th>@language["Comment"]</th>
+        <th>@language["Delete"]</th>
+        <th>@language["Update"]</th>
+        
+    </tr>
+
+@using (var context = new Context())
+{
+    // Use LINQ to query the Movies table in the database
+    IEnumerable<Movie>
+    movies = from m in context.Movies
+    orderby m.Name ascending
+    select m;
+
+    // Query the movies list to find all movies with a genre of "Drama"
+        
+    
+
+        // Iterate through the query results and print the titles of the drama movies
+        foreach (Movie movie in movies)
+        {
+            
+        <tr>
+            <td>@movie.Name</td>
+            <td>@movie.Director</td>
+            <td>@movie.Composer</td>
+            <td>@movie.Language</td>
+            <td>@movie.Rating</td>
+            <td>@movie.Writer</td>
+            <td>@movie.Star_Actor</td>
+            <td>@movie.Genre</td>
+            <td>@movie.Synposis</td>
+            <td>@movie.Comment</td>
+            
+                    <td><a href="/Home/MovieDelete/@movie.Id" class="btn btn-danger">@language["Delete"]</a></td>
+                    <td><a href="/Home/MovieGet/@movie.Id" class="btn btn-success">@language["Update"]</a></td>
+        </tr>
+            
+        }       
+}
+</table>
+    <a href="/Home/NewMovie" class="btn btn-primary">@language["New Movie"]</a>
+</body>
+</html>
