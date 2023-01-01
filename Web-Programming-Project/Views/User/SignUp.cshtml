@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model Web_Programming_Project.Models.User
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>Sign Up</title>
@@ -17,12 +19,7 @@
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" aria-describedby="name-help" required>
                 <small id="name-help" class="form-text text-muted">Please enter your full name.</small>
-            </div>
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="email-help" required>
-                <small id="email-help" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
+            </div>            
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" required>
@@ -40,42 +37,44 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
 <script>
-$(document).ready(function () {
-    $('#signup-form').submit(function (e) {
-        e.preventDefault();
+    $(document).ready(function () {
+        $('#signup-form').submit(function (e) {
+            e.preventDefault();
 
-        // Validate form
-        var isValid = true;
-        if ($('#password').val() !== $('#confirm-password').val()) {
-            isValid = false;
-            $('#confirm-password').addClass('is-invalid');
-            $('.error').text('Passwords do not match');
-        } else {
-            $('#confirm-password').removeClass('is-invalid');
-            $('.error').text('');
-        }
-
-        if (!isValid) {
-            return;
-        }
-
-        // Create new user object
-        var user = {
-            name: $('#name').val(),
-            email: $('#email').val(),
-            password: $('#password').val()
-        };
-
-        // Add user to database
-        $.post('/signup', user, function (data) {
-            if (data.success) {
-                window.location.href = '/login';
+            // Validate form
+            var isValid = true;
+            if ($('#password').val() !== $('#confirm-password').val()) {
+                isValid = false;
+                $('#confirm-password').addClass('is-invalid');
+                $('.error').text('Passwords do not match');
             } else {
-                $('.error').text(data.error);
+                $('#confirm-password').removeClass('is-invalid');
+                $('.error').text('');
             }
+
+            if (!isValid) {
+                return;
+            }
+
+            // Create new user object
+            var user = {
+                UserName: $('#name').val(),               
+                Password: $('#password').val()
+            };
+
+            // Add user to database
+            $.post('/User/SignUp', user, function (data) {
+                if (data.success) {
+                    
+                    window.location.href = '/User/SignIn';
+                        
+                } else {
+                    $('.error').text(data.error);
+                }
+            });
         });
     });
-});
+
 </script>
 </body>
 </html>

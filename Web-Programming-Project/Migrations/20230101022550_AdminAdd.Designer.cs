@@ -11,8 +11,8 @@ using Web_Programming_Project.Models;
 namespace WebProgrammingProject.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20221231233136_Relations-Test-4")]
-    partial class RelationsTest4
+    [Migration("20230101022550_AdminAdd")]
+    partial class AdminAdd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,19 +24,25 @@ namespace WebProgrammingProject.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MovieUser", b =>
+            modelBuilder.Entity("Web_Programming_Project.Models.Admin", b =>
                 {
-                    b.Property<int>("MoviesId")
+                    b.Property<int>("AdminId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("UsersUserId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"));
 
-                    b.HasKey("MoviesId", "UsersUserId");
+                    b.Property<string>("AdminPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("UsersUserId");
+                    b.Property<string>("AdminUsername")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("MovieUser");
+                    b.HasKey("AdminId");
+
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("Web_Programming_Project.Models.Movie", b =>
@@ -111,21 +117,6 @@ namespace WebProgrammingProject.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("MovieUser", b =>
-                {
-                    b.HasOne("Web_Programming_Project.Models.Movie", null)
-                        .WithMany()
-                        .HasForeignKey("MoviesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Web_Programming_Project.Models.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata;
 
 namespace Web_Programming_Project.Models
 {
@@ -25,9 +27,7 @@ namespace Web_Programming_Project.Models
 
         public string Synposis { get; set; }
 
-        public string Comment { get; set; }
-
-        public ICollection<User> Users { get; set; }    
+        public string Comment { get; set; }    
 
     }
 }

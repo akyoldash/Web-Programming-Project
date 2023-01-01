@@ -1,9 +1,23 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the container
+//builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(option =>
+    {
+        option.LoginPath = "/User/SignIn";
+        option.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+    });
+
+builder.Services.AddHttpContextAccessor();
+
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -16,7 +30,15 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+
+
+
+//app.MapRazorPages();
+//app.MapDefaultControllerRoute();
+
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

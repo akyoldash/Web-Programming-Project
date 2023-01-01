@@ -1,0 +1,56 @@
+﻿@model Web_Programming_Project.Models.User
+
+@{
+    ViewData["Title"] = "Login Page";
+}
+<!-- SignIn.cshtml -->
+
+<form id="signin-form" method="post">
+    <div>
+        <label for="user-name">User Name:</label>
+        <input type="text" id="user-name" name="userName">
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+    </div>
+    <div>
+        <button type="submit">Sign In</button>
+    </div>
+
+    @if (ViewData["ValidateMessage"] != null)
+    {
+        <br />
+        <br />
+        <label background-color="#f44336">@ViewData["ValidateMessage"]</label>
+    }
+</form>
+
+<script>
+    $(document).ready(function () {
+        $('#signin-form').submit(function (e) {
+            e.preventDefault();
+
+            // Get the user name and password from the form
+            var userName = $('#user-name').val();
+            var password = $('#password').val();
+
+            // If the user name and password are "admin", redirect the user to the admin panel
+            if (userName === "b201210097@sakarya.edu.tr" && password === "sau") {
+                window.location.href = '/User/AdminPanel';
+                return;
+            }
+
+            // Send a request to the server to sign the user in
+            $.post('/User/SignIn', { userName: userName, password: password }, function (data) {
+                if (data.success) {
+                    // If the sign-in was successful, redirect the user to the home page
+                    window.location.href = '/Home/Index';
+                } else {
+                    // If the sign-in was not successful, display an error message
+                    alert(data.error);
+                }
+            });
+        });
+    });
+</script>

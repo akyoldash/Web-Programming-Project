@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Web_Programming_Project.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Web_Programming_Project.Controllers
 {
@@ -15,19 +18,21 @@ namespace Web_Programming_Project.Controllers
             _logger = logger;
         }
 
-        //Homepage
+        
         public IActionResult Index()
         {
             var values = obj.Movies.ToList();
             return View(values);
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult NewMovie() 
         {
             return View();       
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult NewMovie(Movie movie)
         {
@@ -37,6 +42,7 @@ namespace Web_Programming_Project.Controllers
             
         }
 
+        [Authorize]
         public IActionResult MovieDelete(int id)
         {
             var movie = obj.Movies.Find(id);
@@ -45,13 +51,14 @@ namespace Web_Programming_Project.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize]
         public IActionResult MovieGet(int id)
         {
             var movie = obj.Movies.Find(id);
             return View("MovieGet", movie);
         }
 
-        
+        [Authorize]
         public IActionResult MovieUpdate(Movie movie)
         {
             
@@ -71,19 +78,10 @@ namespace Web_Programming_Project.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult SignIn()
+       public async Task<IActionResult> LogOut()
         {
-            return View();
-        }
-
-        public IActionResult SignUp() 
-        {
-            return View();  
-        }
-
-        public IActionResult AdminPanel() 
-        {
-            return View();        
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("SignIn", "User");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -16,5 +16,7 @@ namespace Web_Programming_Project.Models
         public DbSet<Movie> Movies { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Admin> Admins { get; set; }
     }
 }
